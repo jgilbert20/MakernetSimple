@@ -1,13 +1,12 @@
 # MakernetSimple Knob (GM1200PTH)
 
-
-#### TL;DR
+## TL;DR
 
 Problem: Rotary encoders are cool but hard to wire into your projects
 
 Solution: Makernet Knob puts a rotary encoder with RGB backlighting into your project as daisy-chainable I2C device
 
-#### What is it?
+## What is it?
 
 Ever played with an "infinite" knobs on your car radio that keep spinning in either direction? These special knobs are a form of "rotary encoder", a device that translates the rotational movement of your fingers into a series of digital special pulses. Rotary encoders are super-cool and add a bit of pizzaz to any project. They make for a great tactile experience far better than up/down buttons or joysticks. 
 
@@ -43,12 +42,11 @@ Some cool project ideas for a rotary encoder you might want to try:
 
 The Makernet Encoder has only four pins: VIN (3.3-10V), GND, SDA and SCL. A tiny (and super inexpensive) microprocessor is integrated on the board and takes care of all of the rest. Be sure to install the Arduino IDE library and check out the various examples below for more details.
 
+## Why did you make it?
 
-#### Why did you make it?
+I love building cool interactive projects and have frequently suffered the royal pain of integrating rotary encoders. I've resolved from this day forward no one else should have to go through that pain again!
 
-I love building cool interactive projects and have frequently suffered the pain of integrating rotary encoders. I resolve from this day forward no one else should have to go through that pain again!
-
-#### Basic hardware instructions
+## Basic hardware instructions
 
 The hardware for the Makernet Encoder comes with a small voltage regulator, LED drivers, level-shifting logic to support both 3.3 and 5V projects, and an extra status LED. Simply connect the VIN pin to your project's 5V or 3.3V power rail, and GND to the project ground. SDA and SCL are connected to the proper pins on your microcontroller just like a sensor or any other I2C device. 
 
@@ -59,7 +57,7 @@ And here is an example using a Teensy 3.2.
 Finally, here is a wiring example with the raspberry Pi.
 
 
-#### Basic software examples
+## Basic software examples
 
 Install the MakernetSimple library into your Arduino programming environment. Inside you'll find several example sketches. 
 
