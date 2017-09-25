@@ -14,9 +14,21 @@
 
 #include <Arduino.h>
 
+#define MAKERNET_I2CCMD_ENCODER_SET_I2C_ADDRESS 0xF8
+
+
+// Must be a NINE byte message exactly, with the 9th byte the new I2C address
+// the first 8 bytes are "MAKERNET"
+// No response is given, but the light is blinked in a particular pattern
+
+
 #define MAKERNET_I2CCMD_ENCODER_GET_STATE 0x20
 #define MAKERNET_I2CCMD_ENCODER_GET_SETTINGS 0x21
 #define MAKERNET_I2CCMD_ENCODER_STORE_SETTINGS 0x22
+
+#define MAKERNET_I2CADDR_ENCODER 0x30
+
+
 
 struct MakernetEncoderState {
 	long curPosition;
