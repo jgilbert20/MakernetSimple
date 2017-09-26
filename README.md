@@ -6,7 +6,7 @@ MakernetSimple is a family of cool knobs, buttons, displays and other gizmos tha
 
 Right now, there is one MakernetSimple device (with more to come!)
 
-* Makernet Knob (GM1200PTH) - an intuitive "infinite" knob with RGB backlighting
+* [Makernet Knob (GM1200PTH)](extras/product-documentation/Knob/Makernet-Knob-GM1200PTH.md) - an intuitive "infinite" knob with RGB backlighting
 
 ## How to get started
 
