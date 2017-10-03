@@ -25,10 +25,11 @@
 #define MAKERNET_I2CCMD_ENCODER_GET_STATE 0x20
 #define MAKERNET_I2CCMD_ENCODER_GET_SETTINGS 0x21
 #define MAKERNET_I2CCMD_ENCODER_STORE_SETTINGS 0x22
+#define MAKERNET_I2CCMD_ENCODER_RESET 0x10
 
 #define MAKERNET_I2CADDR_ENCODER 0x30
 
-
+#define MAKERNET_RESET_CONFIRM 0x42
 
 struct MakernetEncoderState {
 	long curPosition;
@@ -45,8 +46,11 @@ struct MakernetEncoderSettings {
 
 class MakernetSimpleKnob {
 public:
-	void begin( int addr );
+	int begin( int addr );
 	void update();
+	void pushSettings();
+	void setRGB( uint8_t red, uint8_t green,  uint8_t blue  );
+	void setStatusLed( boolean l );
 
 	inline long position() { return _lastEncoderState.curPosition; };
 	inline boolean button() { return _lastEncoderState.button; };
@@ -69,6 +73,7 @@ public:
 private:
 	uint8_t _addr;
 	MakernetEncoderState _lastEncoderState;
+	MakernetEncoderSettings _settings;
 	boolean _hasFirstUpdate = false;
 	long _oldPosition;
 	boolean _oldButton;
