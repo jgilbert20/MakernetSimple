@@ -65,7 +65,7 @@ Here is an example connected to an Arduino UNO, but the basic wiring is essentia
 
 The blue light on the Makernet Knob should light up, indicating that its receiving power. (Don't worry, you can turn off this LED in your sketch if you don't like it.)
 
-## Basic software examples
+## Getting to "hello world"
 
 Once you have the hardware set up, you'll need to install the right software libraries. This will provide you with the software support for the library, the documentation and some great examples to try.
 
@@ -85,12 +85,44 @@ Upload the sketch to your board and open the serial monitor. After twiddling wit
 
 ![serial window](knob_hello_serial.png)
 
+## A tour of the API
 
+Communicating with the Makernet Knob is really simple. To start, you import the libary as follows and declare a new object that corresponds with your knob.
 
+```
+#include <MakernetSimpleKnob.h>
 
-## The software API
+// Declare a knob object to represent the physical Knob
+MakernetSimpleKnob knob;
+```
 
-Communicating with the Makernet Knob is really simple
+Next, in your setup() function you activate the Knob, initializing communication.
+
+```
+knob.begin( 0x30 );
+```
+
+If this function returns zero, there was a problem with connecting to the board. Note that the I2C address that the Knob defaults to using is 0x30 but you can easily reprogram it (see instructions below).
+
+Now, anytime you want to find out what is going on with your Knob, you can issue the command
+
+```
+knob.update();
+```
+
+This gets the current position and button state and stores it in your program. To query the knob, there are several commands:
+
+* `knob.released()` returns true if the button on the Knob was released since the last call to `knob.update()`
+* `knob.pressed()` returns true if the button on the Knob was pressed since the last call to `knob.update()`
+* `knob.button()` returns true if the button is being held down, and false if it is not being pressed
+* `knob.position()` returns the current absolute position of the knob.)
+
+Positional information is returned to you as an absolute value, which is measured in the number of "code rollovers". There are 96 "positions" the knob can have when it makes a full 360 degree circle. (Note the knob has 24 "detents" which are the fixed positions that the knob settles into -- e.g. the clicks that you feel when you trn it.) In most cases, you may wish to simply round the position to the closest multiple of four.
+
+You can also set the configuration with the API to change the RGB and status LED.
+
+* `knob.setRGB( red, green, blue)` sets the color of the knob backlighting. Each color value should be 0-255. For instance, white is 255,255,255, and black is 0,0,0.
+* `knob.setStatusLed( true/false )` turns on and off the little blue LED on the front of the knob
 
 
 ## Advanced hardware details
