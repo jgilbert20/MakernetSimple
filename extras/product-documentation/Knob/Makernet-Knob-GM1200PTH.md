@@ -65,6 +65,8 @@ Here is an example connected to an Arduino UNO, but the basic wiring is essentia
 
 The blue light on the Makernet Knob should light up, indicating that its receiving power. (Don't worry, you can turn off this LED in your sketch if you don't like it.)
 
+
+
 ## Getting to "hello world"
 
 Once you have the hardware set up, you'll need to install the right software libraries. This will provide you with the software support for the library, the documentation and some great examples to try.
@@ -110,19 +112,38 @@ Now, anytime you want to find out what is going on with your Knob, you can issue
 knob.update();
 ```
 
-This gets the current position and button state and stores it in your program. To query the knob, there are several commands:
+The `update` call gets the current position and button state and stores it in your program. 
+
+After calling `update()`, there are several commands that return you its position and state:
 
 * `knob.released()` returns true if the button on the Knob was released since the last call to `knob.update()`
 * `knob.pressed()` returns true if the button on the Knob was pressed since the last call to `knob.update()`
 * `knob.button()` returns true if the button is being held down, and false if it is not being pressed
 * `knob.position()` returns the current absolute position of the knob.)
 
-Positional information is returned to you as an absolute value, which is measured in the number of "code rollovers". There are 96 "positions" the knob can have when it makes a full 360 degree circle. (Note the knob has 24 "detents" which are the fixed positions that the knob settles into -- e.g. the clicks that you feel when you trn it.) In most cases, you may wish to simply round the position to the closest multiple of four.
+Positional information is returned to you as an absolute value. You'll notice that the Knob has 24 "detents" which are the fixed positions that the knob settles into -- e.g. the clicks that you feel when you turn it. Transitioning from one of these detents to another will trigger a change of 4 positional values, allowing you to observe the transit BETWEEN the detents. However, please remembers that for practical purpses, the rotary encoder really only has 24 position so may prefer to have your code round the position value to the closest multiple of four.
 
-You can also set the configuration with the API to change the RGB and status LED.
+The Arduino library also lets you configure the backlighting of the rotary encoder and change if the status LED is on or off.
 
 * `knob.setRGB( red, green, blue)` sets the color of the knob backlighting. Each color value should be 0-255. For instance, white is 255,255,255, and black is 0,0,0.
 * `knob.setStatusLed( true/false )` turns on and off the little blue LED on the front of the knob
+
+## Changing the I2C address and supporting multiple Knobs
+
+To enable greatest flexibility, you can reprogram the I2C address of your Knob to any other value between 10-120. (The default is 0x30.) To do this, a sketch is included in the examples directory that lets you perform the reassignment. You can run this sketch on
+nearly any Arduino IDE compatable hardware such as a Arduino Uno,
+Teensy, Feather etc.
+
+To start, locate the I2C address that your Knob is currently using
+using the i2c_scanner sketch, also available in the library's example folder.
+While performing the one-time address reassignment, you will need to disconnect any other devices you have connected
+before doing this procedure to avoid getting confused among the different Knobs in your project. 
+
+Once you have located the current I2C address, update the current and new address in the sketch as shown. 
+
+Now program and load this sketch. When you run the sketch, you should see the Knob rapidly blink to indicate a new address has been set in flash memory. Now you must "reboot" the Knob by removing power. The next time you connect it to your project, it will remember its new address and use that from now on (until your change it again!)
+
+
 
 
 ## Advanced hardware details

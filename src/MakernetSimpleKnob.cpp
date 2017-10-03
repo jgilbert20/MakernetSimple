@@ -24,14 +24,17 @@ int MakernetSimpleKnob::begin( int addr )
 	Wire.begin();
 
 	Wire.beginTransmission(_addr); 
-	Wire.write(MAKERNET_I2CCMD_ENCODER_RESET);              // sends one byte
-	Wire.endTransmission(true);    // stop transmitting
+	Wire.write( (uint8_t)MAKERNET_I2CCMD_ENCODER_RESET);              // sends one byte
+	Wire.endTransmission();    // stop transmitting
 
 	uint8_t recvSize = Wire.requestFrom(_addr, 1 ); 
+	
 	uint8_t statusCode = Wire.read();
 
 	if( statusCode != MAKERNET_RESET_CONFIRM )
 		return 0;
+
+	while (Wire.available()) { Wire.read(); }
 
 	return 1;
 }
@@ -47,15 +50,19 @@ void MakernetSimpleKnob::update()
 
 	Wire.beginTransmission(_addr); 
 	Wire.write(MAKERNET_I2CCMD_ENCODER_GET_STATE);              // sends one byte
-	Wire.endTransmission(true);    // stop transmitting
+	Wire.endTransmission();    // stop transmitting
 
 	uint8_t recvSize = Wire.requestFrom(_addr, sizeof( MakernetEncoderState ) );  
+	//while (!Wire.available()) {}
 
 	int pos = 0;
 	while (Wire.available()) {
 		if ( pos < BUFF_SIZE )
 			i2c_buffer[pos++] = Wire.read();
 	}
+
+	if( pos != sizeof(MakernetEncoderState) )
+		return;
 
 	struct MakernetEncoderState *reply = (MakernetEncoderState *)(i2c_buffer);
 
@@ -76,7 +83,7 @@ void MakernetSimpleKnob::pushSettings()
 	Wire.beginTransmission(_addr); // transmit to device #8
     Wire.write(MAKERNET_I2CCMD_ENCODER_STORE_SETTINGS);
     Wire.write( (uint8_t *)&_settings, sizeof( MakernetEncoderSettings ) );
-    Wire.endTransmission(true);    // stop transmitting	
+    Wire.endTransmission();    // stop transmitting	
 }
 
 void MakernetSimpleKnob::setRGB( uint8_t red, uint8_t green,  uint8_t blue )
