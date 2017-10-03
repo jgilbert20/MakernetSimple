@@ -1,5 +1,7 @@
 # Welcome to MakernetSimple
 
+![Product image](extras/product-documentation/Knob/GM1200PTG-with-uno.jpg)
+
 MakernetSimple is a family of cool knobs, buttons, displays and other gizmos that have been designed to make it dead-simple to incorporate great interfaces into your cool maker projects. Ready to add a neat capactive slider, D-Pad or joystick to your next project? MakernetSimple products have clean C++/Python API interfaces, can be easily daisy-chained, and give you a clear strategy for mounting into cases.
 
 ## Product lineup
