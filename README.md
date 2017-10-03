@@ -12,6 +12,8 @@ Right now, there is one MakernetSimple device (with more to come!)
 
 ## How to get started
 
-This repository serves both as central documentation site for Makernet as well as a downloadable software library. 
+Head over to the [link above](extras/product-documentation/Knob/Makernet-Knob-GM1200PTH.md) to learn how to use the Makernet Knob, download the libraries, and get your new hardware woring!
+
+This github repository serves both as central documentation site for Makernet as well as a downloadable software library. 
 
 To buy MakernetSimple products, head over to my Tindie store. 

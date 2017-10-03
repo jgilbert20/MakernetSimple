@@ -2,7 +2,7 @@
 
 ![Product image](GM1200PTG-with-uno.jpg)
 
-## TL;DR
+## Rotary encoders made simple
 
 Problem: Rotary encoders are cool but hard to wire into your projects
 
@@ -10,7 +10,7 @@ Solution: Makernet Knob puts a rotary encoder with RGB backlighting into your pr
 
 Mischief managed!
 
-## What is it? (Rotary encoders are cool but hard)
+## Why a rotary encoder?
 
 Ever played with an "infinite" knobs on your car radio that keep spinning in either direction? These special knobs are a form of "rotary encoder", a device that translates the rotational movement of your fingers into a series of digital special pulses. Rotary encoders are super-cool and add a bit of pizzaz to any project. They make for a great tactile experience far better than up/down buttons or joysticks. 
 
@@ -20,7 +20,7 @@ Sadly, rotary encoders are not simple to use. In fact, they can be downright com
 
 Well, hackers of the world, suffer no longer! The Makernet Knob takes the infinite twirling goodness of a traditional rotary encoder (with its complex pulse train) and provides you with a dead-simple, daisy-chainable I2C interface. For those new to the scene, I2C is a simple and easy-to-use bus that you almost certainly already have on your maker boards. In fact, nearly every microprocessor from the Raspberry Pi, ESP8266, AVR/Arduino, and even the popular Teensy boards supports I2C. With the Makernet Knob, you just connect up four simple wires and suddenly a beautiful encoder with a controllable RGB LED and pressable-select button can join your project with a minimum of fuss.
 
-## Features
+## Device features
 
 Special features of the Makernet Encoder:
 
@@ -38,7 +38,7 @@ Special features of the Makernet Encoder:
 * Contains special code that lets you set it to any I2C device address allowing you to daisy chain and avoid I2C address conflicts
 * Built by a Maker just like you!
 
-## Where to use it
+## Where to use a rotary encoder
 
 Some cool project ideas for a rotary encoder you might want to try:
 
@@ -47,10 +47,6 @@ Some cool project ideas for a rotary encoder you might want to try:
 * Implement a Left-Right-Left safe that only unlocks when the right numbers are selected
 * Give your next clock project a super cool way to set a timer or alarm
 * Build your own midi control surface!
-
-## Its dead simple
-
-The Makernet Encoder has only four pins: VIN (3.3-10V), GND, SDA and SCL. A tiny (and super inexpensive) microprocessor is integrated on the board and takes care of all of the rest. Be sure to install the Arduino IDE library and check out the various examples below for more details.
 
 ## Why did you make it?
 
@@ -79,9 +75,17 @@ First, install the MakernetSimple library into your Arduino programming environm
 
 Next, follow the instructions [here](https://www.arduino.cc/en/Guide/Libraries) to install into the library into your Arduino IDE. Another great source of help is [Adafruit's "All about Arduino Libraries."](https://learn.adafruit.com/adafruit-all-about-arduino-libraries-install-use/arduino-libraries)
 
-Inside you'll find several example sketches. 
+Once yu've got the library installed, look under Examples -> MakernetSimple in your File menu to see some sketches. Choose `knob_simple_example`.
 
-First, lets get your hello world up and running:
+You should get a window like this:
+
+![sketch window](knob_sketch_window.png)
+
+Upload the sketch to your board and open the serial monitor. After twiddling with your knob and pressing the button you should see the following messages:
+
+![serial window](knob_hello_serial.png)
+
+
 
 
 ## The software API
