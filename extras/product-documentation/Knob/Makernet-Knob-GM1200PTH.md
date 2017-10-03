@@ -1,5 +1,7 @@
 # MakernetSimple Knob (GM1200PTH)
 
+![Product image](GM1200PTG-with-uno.jpg)
+
 ## TL;DR
 
 Problem: Rotary encoders are cool but hard to wire into your projects
