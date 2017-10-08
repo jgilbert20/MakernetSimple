@@ -16,4 +16,4 @@ Head over to the [link above](extras/product-documentation/Knob/Makernet-Knob-GM
 
 This github repository serves both as central documentation site for Makernet as well as a downloadable software library. 
 
-To buy MakernetSimple products, head over to my Tindie store. 
+To buy MakernetSimple products, head over to my [Tindie store](https://www.tindie.com/products/jgilbert/makernet-knob/). 
